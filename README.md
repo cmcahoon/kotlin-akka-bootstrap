@@ -9,8 +9,8 @@ Clone this repository to have Kotlin + Akka up and running in no time!
 
 | Tool | Version | Notes |
 |------|---------|-------|
-| Kotlin | 1.3.10 | |
-| Gradle | 5.1 | Use the wrapper -- no need to install locally |
+| Kotlin | 1.4.21 | |
+| Gradle | 6.7.1 | Use the wrapper -- no need to install locally |
 | Akka | 2.5.19 | |
 
 ## Usage
