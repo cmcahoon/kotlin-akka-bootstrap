@@ -1,38 +1,35 @@
 package com.foo.akka
 
-import akka.actor.AbstractActor
-import akka.actor.Props
-import akka.event.Logging
+import akka.actor.typed.Behavior
+import akka.actor.typed.javadsl.AbstractBehavior
+import akka.actor.typed.javadsl.ActorContext
+import akka.actor.typed.javadsl.Behaviors
+import akka.actor.typed.javadsl.Receive
 
 // Message types. These should be immutable because they are shared between threads. Kotlin data classes are perfect for
 // this. Be sure to use `val`!
 data class Greeting(val message: String)
 
 // Printer is an actor that prints arbitrary strings to the console!
-class Printer : AbstractActor() {
-
-    private val log = Logging.getLogger(context.system, this)
+class Printer(context: ActorContext<Greeting>) : AbstractBehavior<Greeting>(context) {
 
     // In Java, `props` would be a static method on the class. In Kotlin, we can define it as a companion object so it
     // can be referenced as `Greeter.props(...)`.
     companion object {
-        fun props() : Props {
-            return Props.create(Printer::class.java) {
-                Printer()
-            }
+        fun create() : Behavior<Greeting> {
+            return Behaviors.setup(::Printer)
         }
     }
 
     // Every actor has to override this function. Akka provides an easy to use matcher which routes message types to the
     // appropriate handler functions.
-    override fun createReceive(): Receive {
-        return receiveBuilder()
-                .match(Greeting::class.java, this::onGreeting) // Handle Greeting messages
-                .build()
+    override fun createReceive(): Receive<Greeting> {
+        return newReceiveBuilder().onMessage(Greeting::class.java, this::onGreeting).build()
     }
 
-    private fun onGreeting(msg: Greeting) {
-        log.info(msg.message)
+    private fun onGreeting(msg: Greeting): Behavior<Greeting>{
+        println(msg.message)
+        return this
     }
 
 }
