@@ -25,13 +25,10 @@ From the project root run:
 $ ./gradlew run
 
 > Task :run
->>> Press ENTER to exit <<<
-[INFO] [01/10/2019 21:04:17.201] [helloAkka-akka.actor.default-dispatcher-4] [akka://helloAkka/user/printerActor] Good day, Mr. Holmes!
-[INFO] [01/10/2019 21:04:17.202] [helloAkka-akka.actor.default-dispatcher-4] [akka://helloAkka/user/printerActor] Howdy, Partner!
-[INFO] [01/10/2019 21:04:17.202] [helloAkka-akka.actor.default-dispatcher-4] [akka://helloAkka/user/printerActor] Howdy, Cowboy!
-[INFO] [01/10/2019 21:04:17.202] [helloAkka-akka.actor.default-dispatcher-4] [akka://helloAkka/user/printerActor] Hey, You!
-
-# Press ENTER here!
+10:14:10.871 [greetings-akka.actor.default-dispatcher-5] INFO com.foo.akka.Printer - Good day, Mr. Holmes!
+10:14:10.871 [greetings-akka.actor.default-dispatcher-5] INFO com.foo.akka.Printer - Howdy, Partner!
+10:14:10.871 [greetings-akka.actor.default-dispatcher-5] INFO com.foo.akka.Printer - Howdy, Cowboy!
+10:14:10.871 [greetings-akka.actor.default-dispatcher-5] INFO com.foo.akka.Printer - Hey, You!
 
 BUILD SUCCESSFUL in 5s
 3 actionable tasks: 2 executed, 1 up-to-date

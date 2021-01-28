@@ -1,8 +1,6 @@
 package com.foo.akka
 
-import akka.actor.AbstractActor
-import akka.actor.ActorRef
-import akka.actor.Props
+import akka.actor.typed.ActorRef
 import akka.actor.typed.Behavior
 import akka.actor.typed.javadsl.AbstractBehavior
 import akka.actor.typed.javadsl.ActorContext
@@ -11,11 +9,16 @@ import akka.actor.typed.javadsl.Receive
 
 // Message types. These should be immutable because they are shared between threads. Kotlin data classes are perfect for
 // this. Be sure to use `val`!
-data class WhoToGreet(val who: String)
-class Greet
+class Greet(val salutation: String, val who: String)
 
 // Greeter is an actor that creates a customized greeting!
 class Greeter(context: ActorContext<Greet>) : AbstractBehavior<Greet>(context) {
+    val printer: ActorRef<Greeting>
+
+    init {
+        printer = context.spawn(Printer.create(), "printer")
+    }
+
     // In Java, `props` would be a static method on the class. In Kotlin, we can define it as a companion object so it
     // can be referenced as `Greeter.props(...)`.
     companion object {
@@ -32,8 +35,7 @@ class Greeter(context: ActorContext<Greet>) : AbstractBehavior<Greet>(context) {
     }
 
     private fun onGreet(msg: Greet) : Behavior<Greet> {
-        val printer = context.spawn(Printer.create(), "printer")
-        printer.tell(Greeting("Hello, Akka!"))
+        printer.tell(Greeting("${msg.salutation}, ${msg.who}!"))
         return this
     }
 }

@@ -18,6 +18,8 @@ dependencies {
     implementation("com.typesafe.akka:akka-actor-typed_${scala_version}")
     testImplementation("com.typesafe.akka:akka-testkit_${scala_version}")
     testImplementation("junit:junit:4.12")
+
+    runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
 }
 
 application {

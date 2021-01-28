@@ -28,7 +28,7 @@ class Printer(context: ActorContext<Greeting>) : AbstractBehavior<Greeting>(cont
     }
 
     private fun onGreeting(msg: Greeting): Behavior<Greeting>{
-        println(msg.message)
+        context.log.info(msg.message)
         return this
     }
 
