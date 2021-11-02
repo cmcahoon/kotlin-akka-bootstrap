@@ -11,5 +11,6 @@ fun main() {
     system.tell(Greet("Hey", "You"))
 
     // Terminate the system. This will stop all of our actors and shutdown gracefully.
+    Thread.sleep(2000)
     system.terminate()
 }

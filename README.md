@@ -9,9 +9,9 @@ Clone this repository to have Kotlin + Akka up and running in no time!
 
 | Tool | Version | Notes |
 |------|---------|-------|
-| Kotlin | 1.4.21 | |
+| Kotlin | 1.5.31 | |
 | Gradle | 6.7.1 | Use the wrapper -- no need to install locally |
-| Akka | 2.5.19 | |
+| Akka | 2.6.17 | |
 
 ## Usage
 The following instructions are for command line interaction. IntelliJ has tight integration with Gradle if you prefer the GUI.

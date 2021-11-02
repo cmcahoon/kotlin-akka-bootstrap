@@ -1,10 +1,10 @@
 plugins {
     application
-    kotlin("jvm") version "1.4.21"
+    kotlin("jvm") version "1.5.31"
 }
 
-val akka_version = "2.6.11"
-val scala_version = "2.13"
+val akkaVersion = "2.6.17"
+val scalaVersion = "2.13"
 
 repositories {
     mavenCentral()
@@ -12,14 +12,14 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("com.typesafe.akka:akka-bom_${scala_version}:${akka_version}"))
+    implementation(platform("com.typesafe.akka:akka-bom_${scalaVersion}:${akkaVersion}"))
 
     implementation(kotlin("stdlib"))
-    implementation("com.typesafe.akka:akka-actor-typed_${scala_version}")
-    testImplementation("com.typesafe.akka:akka-testkit_${scala_version}")
-    testImplementation("junit:junit:4.12")
+    implementation("com.typesafe.akka:akka-actor-typed_${scalaVersion}")
+    testImplementation("com.typesafe.akka:akka-testkit_${scalaVersion}")
+    testImplementation("junit:junit:4.13.2")
 
-    runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
+    runtimeOnly("ch.qos.logback:logback-classic:1.2.6")
 }
 
 application {
@@ -27,7 +27,7 @@ application {
 }
 
 tasks {
-    val run by getting(JavaExec::class) {
-        standardInput = System.`in`
+    compileKotlin {
+        kotlinOptions.jvmTarget = "11"
     }
 }
